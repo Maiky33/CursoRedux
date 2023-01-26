@@ -1,81 +1,63 @@
 import { connect } from 'react-redux'
 import Cancha from "./Styles/images/cancha.png"
 import "./Styles/titulares.css"
-import {DragDropContext,Droppable,Draggable} from 'react-beautiful-dnd'
+import { GridContextProvider, GridDropZone, GridItem, swap } from 'react-grid-dnd'
 
 
 
-const reorder = (list, startIndex, endIndex) => {  
-  const result = [...list];
-  const [removed] = result.splice(startIndex, 1);
-  result.splice(endIndex, 0, removed)
 
-  return result
-}
 
-const Titulares = ({ titulares,EliminarTitular,Actualizartareas}) => (
 
-  <section className='container_Titulares'>
-    <DragDropContext onDragEnd={(result) => { 
-      const { source, destination } = result;
-      if(!destination){
-        return
-      }
-      if (source.index === destination.index &&
-        source.droppableId === destination.droppableId
-      ){ 
-        return
-      }
+const Titulares = ({ titulares, EliminarTitular }) => { 
+
+
+  function onChange(sourceIndex, targetIndex) {  
+    const nextState = swap(titulares, sourceIndex, targetIndex)
+    return nextState
+  }
+
+  return (
+    <section className="container_Titulares">
+      <GridContextProvider onChange={onChange()}>
+        <h2>Titulares</h2>
+
         
-      Actualizartareas (reorder(titulares, source.index, destination.index))
-      
-    }}>
-      
-      <h2>Titulares</h2>
-
-      <Droppable droppableId='Titulares' direction='vertical'> 
-
-        {(droppableProvider) =>
-          <div {...droppableProvider.droppableProps} ref={droppableProvider.innerRef} style={
-            {
+          <GridDropZone
+            id="Zone"
+            boxesPerRow={4}
+            rowHeight={150}
+            style={{
               backgroundImage: `url(${Cancha})`,
-              backgroundRepeat: 'no-repeat',
-              backgroundSize:'100%'
-            }
-          }
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "100%",
+            }}
             className="cancha"
           >
-          
-            {titulares.map((j,index) => (
-
-              
-              <article key={j.id.toString()} className="titular">
-                <Draggable  draggableId={j.id.toString()} index={index}> 
-                  
-                  {(dragableProvider)=>
-                    <div {...dragableProvider.draggableProps}
-                      ref={dragableProvider.innerRef}
-                      {...dragableProvider.dragHandleProps}
-                    > 
-                      <img onClick={()=>{EliminarTitular(j)}} className='imagen_titulares' src={j.foto} alt={j.nombre} />
-                      <p className='p_titular'>{j.nombre}</p> 
-                    </div>
-                  }
-
-                </Draggable> 
+            {titulares.map((j) => (
+              <article key={j.id} className="titular">
+                <GridItem key={j.id}>
+                  <div>
+                    <img
+                      
+                      className="imagen_titulares"
+                      src={j.foto}
+                      alt={j.nombre}
+                    />
+                     
+                    <button className='Eliminate_card' onClick={()=>EliminarTitular(j)}>x</button>
+                    
+                  </div>
+                </GridItem>
               </article>
-          
             ))}
-            {droppableProvider.placeholder}
-          </div>
-        }
-      </Droppable>
+          </GridDropZone>
+        
+      </GridContextProvider>
+    </section>
+  );
+}
+  
 
-    </DragDropContext>
-
-  </section>
-
-);
 
 //resivimos el estado que trae los titulares para poder pasarlos por parametros al componente y mapearlos
 const mapStateToProps = state => ({  

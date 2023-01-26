@@ -6,22 +6,30 @@
     gap: 50px;
 }
 
+
+
 .cancha{    
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(4,1fr);
-    grid-template-rows: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);  */
     width: 700px;
     height: 500px;
 }
 .titular{  
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    margin-top: 30px;
     text-align: center;
-    align-items: center;
-    color: #000000;
+    color: #ffffff;
 }
 .imagen_titulares{  
     width: 80px;
+    cursor: pointer;
+}
+
+.Eliminate_card{ 
+    width: 15px;
+    background-color: rgb(255, 128, 128);
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
     cursor: pointer;
 }
