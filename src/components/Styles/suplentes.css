@@ -1,0 +1,24 @@
+.Container_suplentes{   
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.suplentes{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #081927;
+    
+    width: 200px;
+    height: 510px;
+    text-align: center;
+    overflow-x: scroll;
+}
+
+
+.images_suplente{
+    cursor: pointer;
+    width: 150px;
+    height: 220px;
+}

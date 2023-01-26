@@ -1,0 +1,10 @@
+*{  
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Courier New';
+}
+.Main{
+    padding: 50px;
+    background-color: #082031;
+    color: #dad0d0;
+}

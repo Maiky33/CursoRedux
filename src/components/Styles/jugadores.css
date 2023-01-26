@@ -1,0 +1,42 @@
+.container_jugadores{   
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.Jugadores{ 
+    display: flex;
+    gap: 10px;
+    background-color: #081927;
+    padding: 20px;
+    overflow-x: scroll;
+}
+
+.jugador{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.image_jugadores{
+    width: 150px;
+    height: 220px;
+}
+.Container_buttons{ 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.Buttons_T_S{   
+    background-color: rgb(42, 46, 46);
+    color: rgb(255, 255, 255);
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}

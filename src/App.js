@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Jugadores from './components/Jugadores'
+import EquipoSeleccionado from './components/EquipoSeleccionado'
+import { Provider } from "react-redux"//react-redux, con provider Proveemos la store Para poder usarla
+import Store from './Store'
+import './Styles/App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <Provider store={Store}>  
+    <main className='Main'>  
+      <h1>Ed Manager</h1>
+      <Jugadores />
+      <EquipoSeleccionado/>    
+    </main>
+  </Provider>
+)
+  
+
 
 export default App;
