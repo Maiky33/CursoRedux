@@ -4,17 +4,17 @@ const initialState = {//Estado Global
   jugadores: [
     {
       id: 1,
-      nombre: "LIONEL MESSI",
+      nombre: "MESSI",
       foto: "https://a.espncdn.com/photo/2020/0910/r743441_597x895_2-3.png",
     },
     {
       id: 2,
-      nombre: "CRISTIANO RONALDO",
+      nombre: "RONALDO",
       foto: "https://a.espncdn.com/photo/2020/0910/r743442_597x895_2-3.png",
     },
     {
       id: 3,
-      nombre: "KILIAN MBAPPE",
+      nombre: "MBAPPE",
       foto: "https://media.tycsports.com/files/2021/05/25/285914/kylian-mbappe-carta-90_w416.png",
     }, { 
       id: 4,
@@ -52,11 +52,16 @@ const initialState = {//Estado Global
       id: 12,
       nombre: "LUKAKU",
       foto: "https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/ratings-collective/common/news/player-items/best-strikers/77-fifa21-golditems-lukaku.png.adapt.crop16x9.652w.png"
+    }, { 
+      id: 13,
+      nombre: 'NEUER',
+      foto:'https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/ratings-collective/common/news/player-items/best-gk/fifa21-golditems-gk-neuer.png.adapt.crop16x9.652w.png'
     }
   ],
   titulares: [],
   suplentes: [],
 };
+
 
 //recibimos actions en una funcion en este caso reducerEntrenador
 const reducerEntrenador = (state = initialState, action) => {
@@ -98,6 +103,13 @@ const reducerEntrenador = (state = initialState, action) => {
       ...state,
       suplentes: state.suplentes.filter(j => j.id !== action.jugador.id),
       jugadores: state.jugadores.concat(action.jugador)
+    }
+  }
+
+  if (action.type === "ACTUALIZAR_TITULARES") { 
+    return { 
+      ...state,
+      titulares: action.titulares
     }
   }
 

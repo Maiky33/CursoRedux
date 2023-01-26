@@ -1,33 +1,77 @@
 import { connect } from 'react-redux'
 import Cancha from "./Styles/images/cancha.png"
 import "./Styles/titulares.css"
+import {DragDropContext,Droppable,Draggable} from 'react-beautiful-dnd'
 
 
-const Titulares = ({ titulares,EliminarTitular}) => (
+
+const reorder = (list, startIndex, endIndex) => {  
+  const result = [...list];
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed)
+
+  return result
+}
+
+const Titulares = ({ titulares,EliminarTitular,Actualizartareas}) => (
 
   <section className='container_Titulares'>
-    <h2>Titulares</h2>
-
-    <div style={
-      {
-        backgroundImage: `url(${Cancha})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize:'100%'
+    <DragDropContext onDragEnd={(result) => { 
+      const { source, destination } = result;
+      if(!destination){
+        return
       }
-    }
-      className="cancha"
-    >
+      if (source.index === destination.index &&
+        source.droppableId === destination.droppableId
+      ){ 
+        return
+      }
+        
+      Actualizartareas (reorder(titulares, source.index, destination.index))
       
-      {titulares.map((j) => (
-        <article className="titular" key={j.id}>
-          <div> 
-            <img onClick={()=>{EliminarTitular(j)}} className='imagen_titulares' src={j.foto} alt={j.nombre} />
-          </div>
-          <p className='p_titular'>{j.nombre}</p>
-        </article>
-      ))}
+    }}>
+      
+      <h2>Titulares</h2>
 
-    </div>
+      <Droppable droppableId='Titulares' direction='vertical'> 
+
+        {(droppableProvider) =>
+          <div {...droppableProvider.droppableProps} ref={droppableProvider.innerRef} style={
+            {
+              backgroundImage: `url(${Cancha})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize:'100%'
+            }
+          }
+            className="cancha"
+          >
+          
+            {titulares.map((j,index) => (
+
+              
+              <article key={j.id.toString()} className="titular">
+                <Draggable  draggableId={j.id.toString()} index={index}> 
+                  
+                  {(dragableProvider)=>
+                    <div {...dragableProvider.draggableProps}
+                      ref={dragableProvider.innerRef}
+                      {...dragableProvider.dragHandleProps}
+                    > 
+                      <img onClick={()=>{EliminarTitular(j)}} className='imagen_titulares' src={j.foto} alt={j.nombre} />
+                      <p className='p_titular'>{j.nombre}</p> 
+                    </div>
+                  }
+
+                </Draggable> 
+              </article>
+          
+            ))}
+            {droppableProvider.placeholder}
+          </div>
+        }
+      </Droppable>
+
+    </DragDropContext>
 
   </section>
 
@@ -43,13 +87,19 @@ const mapDispastchToProps = dispatch => ({
   
   //pasamos por paremetros la funcion que trae el jugador 
   EliminarTitular(jugador) {
-
     //despachamos un type, y el jugador 
     dispatch({  
       type: "ELIMINAR_TITULAR",
       jugador
     })   
+  },
+  Actualizartareas(titulares) {  
+    dispatch({  
+      type: "ACTUALIZAR_TITULARES",
+      titulares
+    })  
   }
+  
 })
 
 
