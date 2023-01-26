@@ -58,13 +58,21 @@ const initialState = {//Estado Global
   suplentes: [],
 };
 
-const reducerEntrenador = (state = initialState, action) => {//recibimos actions
-  
-
+//recibimos actions en una funcion en este caso reducerEntrenador
+const reducerEntrenador = (state = initialState, action) => {
+  //reducerEntrenador resive dos parametros el stado inicial y los actions
+ 
+  //resivimos la accion y cada una de estas nos despacha un tipo en este caso type: "AGREGAR_TITULAR"
   if (action.type === "AGREGAR_TITULAR") {
+    //si action.type es tal retorna x/y cosa
     return {
+      //copiamos todo el state
       ...state,
+
+      //le decimos a state.titulares que concatene el jugador que despacha de actions(action.jugador)
       titulares: state.titulares.concat(action.jugador),
+
+      //y filtramos state.jugadores, que me devuelva todos los que son distintos de el jugador que despacha de actions(action.jugador.id)
       jugadores: state.jugadores.filter(j => j.id !== action.jugador.id)
     };
   }
@@ -93,8 +101,9 @@ const reducerEntrenador = (state = initialState, action) => {//recibimos actions
     }
   }
 
+  //retornamos el state
   return state;
  
 };
 
-export default createStore(reducerEntrenador);
+export default createStore(reducerEntrenador);//creamos la store y exportamos

@@ -5,6 +5,7 @@ import { Provider } from "react-redux"//react-redux, con provider Proveemos la s
 import Store from './Store'
 import './Styles/App.css'
 
+//encerramos con la etiqueta Provider toda app para asi poder acceder a la store dede cualquier punto(redux)
 const App = () => (
   <Provider store={Store}>  
     <main className='Main'>  

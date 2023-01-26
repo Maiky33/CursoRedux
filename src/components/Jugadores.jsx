@@ -22,13 +22,16 @@ const Jugadores = ({jugadores,agregarTitular,agregarSuplentes}) => (
   </section>
 );
 
-const mapStateToProps = state => ({  //resivimos el estado que trae los jugadores
+//resivimos el estado que trae los jugadores para poder pasarlos por parametros al componente y mapearlos
+const mapStateToProps = state => ({  
   jugadores: state.jugadores
 })
 
 const mapDispastchToProps = dispatch => ({ //enviamos a los actions el jugador con un type 
-  agregarTitular(jugador) {  
-    dispatch({  
+
+  agregarTitular(jugador) { //pasamos por paremetros la funcion que trae el jugador
+    
+    dispatch({  //despachamos un type, y el jugador 
       type: "AGREGAR_TITULAR",
       jugador
     })
@@ -41,4 +44,7 @@ const mapDispastchToProps = dispatch => ({ //enviamos a los actions el jugador c
   }
 })
 
+
+//hacemos la coneccion con la store y resivimos dos parametros, el primero mapea el state y lo pasa props
+//el segundo mapea todos los actions y los pasa a props
 export default connect(mapStateToProps,mapDispastchToProps)(Jugadores);

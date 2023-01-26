@@ -18,12 +18,17 @@ const Suplentes = ({ suplentes,EliminarSuplente}) => (
   </section>
 );
 
-const mapStateToProps = (state) => ({
-  suplentes: state.suplentes,
+//resivimos el estado que trae los suplentes para poder pasarlos por parametros al componente y mapearlos
+const mapStateToProps = state => ({
+  suplentes: state.suplentes
 });
 
+//enviamos a los actions, el jugador con un type 
 const mapDispastchToProps = dispatch => ({  
+
+  //pasamos por paremetros la funcion que trae el jugador 
   EliminarSuplente(jugador) {  
+    //despachamos un type, y el jugador 
     dispatch({  
       type: "ELIMINAR_SUPLENTE",
       jugador
@@ -31,4 +36,7 @@ const mapDispastchToProps = dispatch => ({
   }
 })
 
+
+//hacemos la coneccion con la store y resivimos dos parametros, el primero mapea el state y lo pasa props
+//el segundo mapea todos los actions y los pasa a props
 export default connect(mapStateToProps, mapDispastchToProps)(Suplentes);

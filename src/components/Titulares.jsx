@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import Cancha from "./Styles/images/cancha.png"
 import "./Styles/titulares.css"
 
+
 const Titulares = ({ titulares,EliminarTitular}) => (
 
   <section className='container_Titulares'>
@@ -32,12 +33,18 @@ const Titulares = ({ titulares,EliminarTitular}) => (
 
 );
 
+//resivimos el estado que trae los titulares para poder pasarlos por parametros al componente y mapearlos
 const mapStateToProps = state => ({  
   titulares: state.titulares
 })
 
-const mapDispastchToProps = dispatch => ({  
-  EliminarTitular(jugador) {  
+//enviamos a los actions, el jugador con un type 
+const mapDispastchToProps = dispatch => ({ 
+  
+  //pasamos por paremetros la funcion que trae el jugador 
+  EliminarTitular(jugador) {
+
+    //despachamos un type, y el jugador 
     dispatch({  
       type: "ELIMINAR_TITULAR",
       jugador
@@ -46,4 +53,6 @@ const mapDispastchToProps = dispatch => ({
 })
 
 
+//hacemos la coneccion con la store y resivimos dos parametros, el primero mapea el state y lo pasa props
+//el segundo mapea todos los actions y los pasa a props
 export default connect(mapStateToProps,mapDispastchToProps)(Titulares);
