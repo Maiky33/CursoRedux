@@ -1,29 +1,41 @@
 import { connect } from 'react-redux'
 import Cancha from "./Styles/images/cancha.png"
 import "./Styles/titulares.css"
-import { GridContextProvider, GridDropZone, GridItem, swap } from 'react-grid-dnd'
+import { GridContextProvider, GridDropZone, GridItem,swap} from 'react-grid-dnd'
 
 
 
 
 
 
-const Titulares = ({ titulares, EliminarTitular }) => { 
-
-
-  function onChange(sourceIndex, targetIndex) {  
-    const nextState = swap(titulares, sourceIndex, targetIndex)
-    return nextState
+const Titulares = ({ titulares, EliminarTitular,actualizartitulares}) => { 
+  
+  
+  
+  const onChange = (startIndex, endIndex) => {
+    const result = [...titulares];
+    const [removed] = result.splice(startIndex, 1)
+    result.splice(endIndex, 0, removed)
+    
+    actualizartitulares(result);
   }
-
+    
+  // function onChange(sourceIndex, targetIndex ) {
+  //   const result = swap(titulares, sourceIndex, targetIndex);
+  //   actualizartitulares(result);
+  // }
+    
   return (
+    
     <section className="container_Titulares">
-      <GridContextProvider onChange={onChange()}>
+
+      <GridContextProvider onChange={onChange}>
+
         <h2>Titulares</h2>
 
         
           <GridDropZone
-            id="Zone"
+            id="Titular"
             boxesPerRow={4}
             rowHeight={150}
             style={{
@@ -34,22 +46,22 @@ const Titulares = ({ titulares, EliminarTitular }) => {
             className="cancha"
           >
             {titulares.map((j) => (
-              <article key={j.id} className="titular">
-                <GridItem key={j.id}>
-                  <div>
-                    <img
-                      
-                      className="imagen_titulares"
-                      src={j.foto}
-                      alt={j.nombre}
-                    />
+              
+              <GridItem key={j.id} className="titular">
+                <div>
+                  <img
+                    className="imagen_titulares"
+                    src={j.foto}
+                    alt={j.nombre}
+                  />
                      
-                    <button className='Eliminate_card' onClick={()=>EliminarTitular(j)}>x</button>
+                  <button className='Eliminate_card' onClick={()=>EliminarTitular(j)}>x</button>
                     
-                  </div>
-                </GridItem>
-              </article>
+                </div>
+              </GridItem>
+              
             ))}
+          
           </GridDropZone>
         
       </GridContextProvider>
@@ -75,13 +87,13 @@ const mapDispastchToProps = dispatch => ({
       jugador
     })   
   },
-  Actualizartareas(titulares) {  
+  actualizartitulares(newTitulares) {
     dispatch({  
       type: "ACTUALIZAR_TITULARES",
-      titulares
-    })  
+      newTitulares
+    })
   }
-  
+    
 })
 
 

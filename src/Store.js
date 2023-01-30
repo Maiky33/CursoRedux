@@ -1,5 +1,7 @@
 import { createStore } from "redux"; // redux Provee la Store.
 
+
+
 const initialState = {//Estado Global 
   jugadores: [
     {
@@ -103,6 +105,14 @@ const reducerEntrenador = (state = initialState, action) => {
       ...state,
       suplentes: state.suplentes.filter(j => j.id !== action.jugador.id),
       jugadores: state.jugadores.concat(action.jugador)
+    }
+  }
+
+  if (action.type === "ACTUALIZAR_TITULARES") { 
+    console.log(action.newTitulares)
+    return { 
+      ...state,
+      titulares: action.newTitulares 
     }
   }
 

@@ -22,7 +22,7 @@
 }
 .imagen_titulares{  
     width: 80px;
-    cursor: pointer;
+    cursor: grab;
 }
 
 .Eliminate_card{ 
