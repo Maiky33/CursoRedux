@@ -1,70 +1,130 @@
 import { connect } from 'react-redux'
 import Cancha from "./Styles/images/cancha.png"
 import "./Styles/titulares.css"
-import { GridContextProvider, GridDropZone, GridItem,swap} from 'react-grid-dnd'
+import {useState} from 'react';
 
 
 
 
 
 
-const Titulares = ({ titulares, EliminarTitular,actualizartitulares}) => { 
+const Titulares = ({ titulares, EliminarTitular}) => { 
+
+  const {Formacion,setFormacion} = useState("4-3-3")
+
+
   
-  
-  
-  const onChange = (startIndex, endIndex) => {
-    const result = [...titulares];
-    const [removed] = result.splice(startIndex, 1)
-    result.splice(endIndex, 0, removed)
-    
-    actualizartitulares(result);
-  }
-    
-  // function onChange(sourceIndex, targetIndex ) {
-  //   const result = swap(titulares, sourceIndex, targetIndex);
-  //   actualizartitulares(result);
-  // }
     
   return (
+
     
     <section className="container_Titulares">
 
-      <GridContextProvider onChange={onChange}>
 
-        <h2>Titulares</h2>
+      <div className='Fomaciones'> 
+        <p onClick={()=>{setFormacion("4-3-3")}}>4-3-3</p>
+        <p onClick={()=>{setFormacion("3-4-3")}}>3-4-3</p>
+      </div>
 
-        
-          <GridDropZone
-            id="Titular"
-            boxesPerRow={4}
-            rowHeight={150}
-            style={{
-              backgroundImage: `url(${Cancha})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "100%",
-            }}
-            className="cancha"
-          >
-            {titulares.map((j) => (
+      <h2>Titulares</h2>
+
+      <div
+        id="Titular"
+        style={{
+          backgroundImage: `url(${Cancha})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100%",
+        }}
+        className="cancha"
+      >
+
+        <div className='zona1'> 
+          { titulares.map((j,index) => {  
+
+              if(index === 0){  
+                return (    
+                  <div key={j.id}>          
+                    <img
+                      onClick={()=>EliminarTitular(j)}
+                      className="imagen_titulares"
+                      src={j.foto}
+                      alt={j.nombre}
+                    />
+                  </div>           
+                )
+              }else{  
+                return null
+              }
+            })
+          }
+        </div>
+
+        <div className='zona2'> 
+          { titulares.map((j,index) => {  
               
-              <GridItem key={j.id} className="titular">
-                <div>
+            if(index >= 1 && index <= 4){ 
+
+              return (    
+                <div key={j.id}>          
                   <img
+                    onClick={()=>EliminarTitular(j)}
                     className="imagen_titulares"
                     src={j.foto}
                     alt={j.nombre}
                   />
-                     
-                  <button className='Eliminate_card' onClick={()=>EliminarTitular(j)}>x</button>
-                    
-                </div>
-              </GridItem>
+                </div>          
+              )
+            }else{  
+              return null
+            }
+          })}
+        </div>
+        <div className='zona3'>
+
+          {             
+            titulares.map((j,index) => {  
               
-            ))}
-          
-          </GridDropZone>
+            if(index >= 5 && index <= 7){ 
+              return (    
+                <div key={j.id}>          
+                  <img
+                    onClick={()=>EliminarTitular(j)}
+                    className="imagen_titulares"
+                    src={j.foto}
+                    alt={j.nombre}
+                  />
+                </div>            
+              )
+            }else{  
+              return null
+            }
+          })}
+
+        </div>
+        <div className='zona4'> 
+          { titulares.map((j,index) => {  
+                
+            if(index >= 8 && index <= 10){ 
+    
+              return (    
+                <div key={j.id}>          
+                  <img
+                    onClick={()=>EliminarTitular(j)}
+                    className="imagen_titulares"
+                    src={j.foto}
+                    alt={j.nombre}
+                  />
+                </div>           
+              )
+            }else{  
+              return null
+            }
+
+          })}
+        </div>
         
-      </GridContextProvider>
+      </div>  
+      
     </section>
   );
 }
