@@ -112,7 +112,6 @@ const reducerEntrenador = (state = initialState, action) => {
   }
 
   if (action.type === "ACTUALIZAR_TITULARES") { 
-    console.log(action.newTitulares)
     return { 
       ...state,
       titulares: action.newTitulares 

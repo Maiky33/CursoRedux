@@ -1,126 +1,31 @@
 import { connect } from 'react-redux'
-import Cancha from "./Styles/images/cancha.png"
 import "./Styles/titulares.css"
+import { useState } from 'react'
+
+// import {ForThreeThree,ThreeForThree,ForForTwo} from './Formations/Positions'
+
+import ForThreeThree from './Formations/Positions'
 
 
+const Titulares = ({ titulares, EliminarTitular }) => { 
 
+  const [Formation, setFormation] = useState('4-3-3')
 
-
-
-
-const Titulares = ({ titulares, EliminarTitular}) => { 
-
-    
   return (
 
     
     <section className="container_Titulares">
 
-
-      <div className='Fomaciones'> 
-        <p >4-3-3</p>
-        <p >3-4-3</p>
-      </div>
-
       <h2>Titulares</h2>
 
-      <div
-        id="Titular"
-        style={{
-          backgroundImage: `url(${Cancha})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "100%",
-        }}
-        className="cancha"
-      >
-
-        <div className='zona1'> 
-          { titulares.map((j,index) => {  
-
-              if(index === 0){  
-                return (    
-                  <div key={j.id}>          
-                    <img
-                      onClick={()=>EliminarTitular(j)}
-                      className="imagen_titulares"
-                      src={j.foto}
-                      alt={j.nombre}
-                    />
-                  </div>           
-                )
-              }else{  
-                return null
-              }
-            })
-          }
-        </div>
-
-        <div className='zona2'> 
-          { titulares.map((j,index) => {  
-              
-            if(index >= 1 && index <= 4){ 
-
-              return (    
-                <div key={j.id}>          
-                  <img
-                    onClick={()=>EliminarTitular(j)}
-                    className="imagen_titulares"
-                    src={j.foto}
-                    alt={j.nombre}
-                  />
-                </div>          
-              )
-            }else{  
-              return null
-            }
-          })}
-        </div>
-        <div className='zona3'>
-
-          {             
-            titulares.map((j,index) => {  
-              
-            if(index >= 5 && index <= 7){ 
-              return (    
-                <div key={j.id}>          
-                  <img
-                    onClick={()=>EliminarTitular(j)}
-                    className="imagen_titulares"
-                    src={j.foto}
-                    alt={j.nombre}
-                  />
-                </div>            
-              )
-            }else{  
-              return null
-            }
-          })}
-
-        </div>
-        <div className='zona4'> 
-          { titulares.map((j,index) => {  
-                
-            if(index >= 8 && index <= 10){ 
-    
-              return (    
-                <div key={j.id}>          
-                  <img
-                    onClick={()=>EliminarTitular(j)}
-                    className="imagen_titulares"
-                    src={j.foto}
-                    alt={j.nombre}
-                  />
-                </div>           
-              )
-            }else{  
-              return null
-            }
-
-          })}
-        </div>
-        
-      </div>  
+      <ForThreeThree EliminarTitular={EliminarTitular} titulares={titulares} />
       
+      <div className='Fomaciones'> 
+        <p onClick={()=>setFormation('4-3-3',console.log(Formation))}>4-3-3</p>
+        <p onClick={() =>setFormation('3-4-3',console.log(Formation))}>3-4-3</p>
+        <p onClick={()=>setFormation('4-4-2',console.log(Formation))}>4-4-2</p>
+      </div>
+
     </section>
   );
 }
@@ -142,14 +47,7 @@ const mapDispastchToProps = dispatch => ({
       type: "ELIMINAR_TITULAR",
       jugador
     })   
-  },
-  actualizartitulares(newTitulares) {
-    dispatch({  
-      type: "ACTUALIZAR_TITULARES",
-      newTitulares
-    })
-  }
-    
+  } 
 })
 
 

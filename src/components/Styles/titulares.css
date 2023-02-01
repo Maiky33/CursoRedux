@@ -34,6 +34,13 @@
     align-items: center;
 }
 
+.zona2{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .zona3 {
     width: 25%;
     display: flex;
@@ -59,7 +66,6 @@
 }
 .imagen_titulares{  
     width: 80px;
-    cursor: pointer;
 }
 
 .Eliminate_card{ 
