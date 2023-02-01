@@ -71,7 +71,6 @@ const reducerEntrenador = (state = initialState, action) => {
  
   //resivimos la accion y cada una de estas nos despacha un tipo en este caso type: "AGREGAR_TITULAR"
   if (action.type === "AGREGAR_TITULAR") {
-
     //si action.type es tal retorna x/y cosa
     if(state.titulares.length > 10){  
       alert("maximo jugadores alcanzados")
@@ -112,8 +111,13 @@ const reducerEntrenador = (state = initialState, action) => {
     }
   }
 
-
-
+  if (action.type === "ACTUALIZAR_TITULARES") { 
+    console.log(action.newTitulares)
+    return { 
+      ...state,
+      titulares: action.newTitulares 
+    }
+  }
 
   //retornamos el state
   return state;
