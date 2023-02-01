@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import Cancha from "./Styles/images/cancha.png"
 import "./Styles/titulares.css"
-import { GridContextProvider, GridDropZone, GridItem,swap} from 'react-grid-dnd'
+import { GridContextProvider, GridDropZone, GridItem} from 'react-grid-dnd'
 
 
 
