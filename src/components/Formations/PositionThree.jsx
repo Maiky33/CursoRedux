@@ -2,7 +2,7 @@ import Cancha from "../Styles/images/cancha.png";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { connect } from 'react-redux'
 
-const Position = ({titulares, EliminarTitular,Actualizartitulares}) => {
+const PositionThree = ({titulares, EliminarTitular,Actualizartitulares}) => {
 
   const reorder = (list, startIndex, endIndex) => { 
     const result = [...list];
@@ -114,7 +114,7 @@ const Position = ({titulares, EliminarTitular,Actualizartitulares}) => {
               className="zona3"
             >
               {titulares.map((j, index) => {
-                if (index >= 5 && index <= 7) {
+                if (index >= 5 && index <= 8) {
                   return (
                     <Draggable
                       key={j.id.toString()}
@@ -154,7 +154,7 @@ const Position = ({titulares, EliminarTitular,Actualizartitulares}) => {
               className="zona4"
             >
               {titulares.map((j, index) => {
-                if (index >= 8 && index <= 10) {
+                if (index >= 9 && index <= 10) {
                   return (
                     <Draggable
                       key={j.id.toString()}
@@ -203,4 +203,4 @@ const mapDispastchToProps = dispatch => ({
     })
   }  
 })
-export default connect(mapStateToProps, mapDispastchToProps)(Position);
+export default connect(mapStateToProps, mapDispastchToProps)(PositionThree);
