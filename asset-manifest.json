@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/CursoRedux/static/css/main.78787f61.css",
+    "main.js": "/CursoRedux/static/js/main.bf7dfe9b.js",
+    "static/media/cancha.png": "/CursoRedux/static/media/cancha.a551df01d7f21ebee6e7.png",
+    "index.html": "/CursoRedux/index.html",
+    "main.78787f61.css.map": "/CursoRedux/static/css/main.78787f61.css.map",
+    "main.bf7dfe9b.js.map": "/CursoRedux/static/js/main.bf7dfe9b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.78787f61.css",
+    "static/js/main.bf7dfe9b.js"
+  ]
+}
