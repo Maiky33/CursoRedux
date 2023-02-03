@@ -22,3 +22,15 @@
     width: 150px;
     height: 220px;
 }
+
+@media screen and (max-width:1052px) {
+
+    .Container_suplentes{   
+        margin-top: 50px;
+    }
+    .suplentes {
+        flex-direction: row;
+        width: 100%;
+        height: 250px;
+    }
+}

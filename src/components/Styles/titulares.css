@@ -76,3 +76,32 @@
     border-radius: 50%;
     cursor: pointer;
 }
+
+
+@media screen and (max-width:736px) {
+    .cancha {
+        width: 500px;
+        height: 400px;
+    }
+    .imagen_titulares{  
+        width: 40px;
+    }
+}
+
+@media screen and (max-width:526px) {
+    .cancha {
+        width: 400px;
+        height: 300px;
+    }
+}
+
+@media screen and (max-width:420px) {
+    .cancha {
+        width: 300px;
+        height: 210px;
+    }
+    
+    .imagen_titulares {
+        width: 30px;
+    }
+}
